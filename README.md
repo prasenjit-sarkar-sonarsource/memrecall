@@ -146,6 +146,9 @@ graph TD
     D --> G[Summarization]
     E --> G
     F --> G
+    X --> G
+    Y --> G
+    Z --> G
     G --> H[Generate Summary]
     H --> I[Keywords]
     H --> J[Categories]
