@@ -1,6 +1,22 @@
-# Content Summarizer Chrome Extension
+# <div align="left">Content Summarizer & Translater Chrome Extension <div>
 
-A powerful Chrome extension that summarizes web content, YouTube videos, PDFs, Podcast, Blogs, Wikipedia using OpenAI's GPT API. Get concise or detailed summaries with keyword extraction and content categorization.
+<div align="left">
+<p><strong>Stop drowning in endless content. Get instant, intelligent summaries of any web content - articles, videos, PDFs, podcasts - in your preferred language. Built with GPT for professionals who value their time.</strong></p>
+<a href="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License"></a>
+<a href="http://makeapullrequest.com"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome"></a>
+<a href="https://linkedin.com/in/jit2600"><img src="https://img.shields.io/badge/LinkedIn-Connect-blue" alt="LinkedIn"></a>
+<a href="https://twitter.com/stretchcloud"><img src="https://img.shields.io/twitter/follow/stretchcloud?label=Follow%20@stretchcloud&style=social" alt="Twitter"></a>
+<a href="https://github.com/stretchcloud/memrecall/stargazers"><img src="https://img.shields.io/github/stars/stretchcloud/memrecall?style=social" alt="GitHub Stars"></a>
+<a href="https://github.com/stretchcloud/memrecall/network/members"><img src="https://img.shields.io/github/forks/stretchcloud/memrecall?style=social" alt="GitHub Forks"></a>
+<a href="https://github.com/stretchcloud/memrecall/issues"><img src="https://img.shields.io/github/issues/stretchcloud/memrecall" alt="GitHub Issues"></a>
+<a href="https://github.com/stretchcloud/memrecall/pulls"><img src="https://img.shields.io/github/issues-pr/stretchcloud/memrecall" alt="GitHub Pull Requests"></a>
+</div>
+
+# 🌟 MemRecall: Time is Knowledge
+Never miss the essence of content again. Transform lengthy web content into crystal-clear summaries with AI precision. Whether it's a YouTube deep-dive, a technical PDF, or a Wikipedia rabbit hole - get the insights you need, in the language you prefer.
+
+✨ Features:
+
 
 ```mermaid
 graph LR
@@ -77,13 +93,18 @@ graph LR
 
 ## 🌟 Features
 
-- **Smart Content Detection**: Automatically detects and processes different types of content:
+- **Universal Content Support**: Automatically detects and processes different types of content:
   - Web Articles
   - YouTube Videos
   - PDF Documents
   - Podcast
   - Blogs
   - Wikipedia
+
+- Smart Categorization & Keyword Extraction
+- 10 Language Translations
+- One-Click Summaries
+- Offline Access
 
 - **Dual Summary Modes**:
   - Concise: Quick overview with key points
