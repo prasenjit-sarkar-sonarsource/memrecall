@@ -287,7 +287,7 @@ sequenceDiagram
     Note over U,P: User can toggle between original and translated content
 ```
 
-#### 🧩 Component Structure
+### 🧩 Component Structure
 
 ```mermaid
 graph TD
