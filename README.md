@@ -347,30 +347,6 @@ graph TD
     class Sum,KW,Cat,Trans,Export,Lang,Auto,Theme ui;
 ```
 
-## 🗂 Project Structure
-
-```
-memcall/
-├── components/
-│   ├── CategoryTree.jsx
-│   ├── KeywordPills.jsx
-│   └── LanguageSelector.jsx
-├── content-scripts/
-│   └── content.js
-├── lib/
-│   └── summarizer.js
-├── popup/
-│   ├── popup.html
-│   ├── popup.js
-│   └── popup.css
-├── styles/
-│   └── library.css
-├── .env.example
-├── config.js
-├── background.js
-├── manifest.json
-└── webpack.config.js
-```
 
 ## ⚙️ Configuration
 
