@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="popup.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="../lib/react.production.min.js"></script>
+  <script src="../lib/react-dom.production.min.js"></script>
+  <script src="../lib/marked.min.js"></script>
+</head>
+<body>
+  <div class="header">
+    <h1>Content Summarizer</h1>
+    <div class="header-buttons">
+      <button id="copyBtn" class="icon-button" title="Copy to clipboard">
+        <span class="material-icons">content_copy</span>
+      </button>
+      <button id="exportBtn" class="icon-button" title="Export as markdown">
+        <span class="material-icons">download</span>
+      </button>
+      <button id="settingsBtn" class="icon-button" title="Settings">
+        <span class="material-icons">settings</span>
+      </button>
+      <button id="closeBtn" class="icon-button" title="Close">
+        <span class="material-icons">close</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button id="conciseTab" class="tab">Concise</button>
+    <button id="detailedTab" class="tab active">Detailed</button>
+  </div>
+
+  <div id="result">
+    <div id="summary"></div>
+    <div id="error" class="error"></div>
+  </div>
+
+  <button id="summarizeBtn" class="main-button">Summarize</button>
+  
+  <!-- Use bundled script -->
+  <script src="../dist/popup.bundle.js"></script>
+</body>
+</html>

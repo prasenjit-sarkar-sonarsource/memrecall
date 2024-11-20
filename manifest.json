@@ -1,0 +1,96 @@
+{
+    "manifest_version": 3,
+    "name": "Content Summarizer",
+    "version": "1.0",
+    "description": "A powerful content summarizer that works with web pages, YouTube videos, and PDFs using OpenAI API",
+    
+    "permissions": [
+        "activeTab",
+        "storage",
+        "tabs",
+        "windows",
+        "alarms",
+        "clipboardWrite"
+    ],
+    
+    "host_permissions": [
+        "<all_urls>",
+        "https://api.openai.com/*",
+        "https://www.youtube.com/*"
+    ],
+    
+    "background": {
+        "service_worker": "dist/background.bundle.js",
+        "type": "module"
+    },
+    
+    "action": {
+        "default_popup": "popup/popup.html",
+        "default_icon": {
+            "48": "icons/icon48.png"
+            
+        }
+    },
+    
+    "icons": {
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
+    },
+    
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["lib/pdf.min.js", "content-scripts/content.js"],
+            "run_at": "document_idle"
+        }
+    ],
+    
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "components/*.jsx",
+                "lib/react.production.min.js",
+                "lib/react-dom.production.min.js",
+                "window.html",
+                "popup.js",
+                "lib/pdf.min.js",
+                "lib/pdf.worker.min.js",
+                "lib/marked.min.js"
+                
+            ],
+            "matches": ["<all_urls>"]
+        }
+    ],
+    
+    "content_security_policy": {
+        "extension_pages": "script-src 'self'; object-src 'self'"
+    },
+    
+    "options_page": "options.html",
+    
+    "commands": {
+        "_execute_action": {
+            "suggested_key": {
+                "default": "Ctrl+Shift+S",
+                "mac": "Command+Shift+S"
+            },
+            "description": "Open summarizer"
+        },
+        "summarize_page": {
+            "suggested_key": {
+                "default": "Alt+S",
+                "mac": "Alt+S"
+            },
+            "description": "Summarize current page"
+        }
+    },
+    
+    "minimum_chrome_version": "88",
+    
+    "author": "Prasenjit Sarkar",
+    "homepage_url": "https://github.com/yourusername/content-summarizer",
+
+    "offline_enabled": false,
+    
+    "short_name": "Summarizer"
+}

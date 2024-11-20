@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Content Summarizer</title>
+  <link rel="stylesheet" type="text/css" href="popup/popup.css">
+  <script src="popup/marked.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+  <div class="header">
+    <h1>Content Summarizer</h1>
+    <div class="header-buttons">
+      <button id="copyBtn" class="icon-button" title="Copy Markdown">
+        <span class="material-icons">content_copy</span>
+      </button>
+      <button id="exportBtn" class="icon-button" title="Export as Markdown">
+        <span class="material-icons">download</span>
+      </button>
+      <button id="settingsBtn" class="icon-button" title="Settings">
+        <span class="material-icons">settings</span>
+      </button>
+      <button id="closeBtn" class="icon-button" title="Close">
+        <span class="material-icons">close</span>
+      </button>
+    </div>
+  </div>
+  <div class="tabs">
+    <button id="conciseTab" class="tab active">Concise</button>
+    <button id="detailedTab" class="tab">Detailed</button>
+  </div>
+  <div id="result">
+    <div id="summary"></div>
+    <p id="error" class="error"></p>
+  </div>
+  <button id="summarizeBtn" class="main-button">Summarize</button>
+  <script src="popup/popup.js"></script>
+</body>
+</html>

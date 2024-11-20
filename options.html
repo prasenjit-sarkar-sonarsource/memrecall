@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Content Summarizer Settings</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        :root {
+            --background-color: #0a0a1b;
+            --surface-color: rgba(255, 255, 255, 0.05);
+            --text-color: #ffffff;
+            --text-secondary-color: rgba(255, 255, 255, 0.7);
+            --accent-color: #6750a4;
+            --accent-hover-color: #7c67b5;
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        :root[data-theme="light"] {
+            --background-color: #ffffff;
+            --surface-color: rgba(0, 0, 0, 0.05);
+            --text-color: #0a0a1b;
+            --text-secondary-color: rgba(0, 0, 0, 0.7);
+            --accent-color: #6750a4;
+            --accent-hover-color: #7c67b5;
+            --border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: var(--background-color);
+        color: var(--text-color);
+        transition: background-color 0.3s, color 0.3s;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 24px;
+            font-weight: 500;
+        }
+
+        .logo img {
+            height: 32px;
+        }
+
+        #themeToggle {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #themeToggle:hover {
+            background-color: var(--surface-color);
+        }
+
+        .main-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        h1 {
+            font-size: 48px;
+            font-weight: 600;
+            margin-bottom: 40px;
+            text-align: center;
+            color: var(--text-color);
+        }
+
+        .settings-section {
+            background: var(--surface-color);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .settings-section h2 {
+            font-size: 24px;
+            font-weight: 500;
+            margin: 0 0 16px 0;
+            color: var(--text-color);
+        }
+
+        .settings-description {
+            color: var(--text-secondary-color);
+            font-size: 14px;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        .checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .checkbox-wrapper input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        select {
+        width: 100%;
+        padding: 12px;
+        background: var(--surface-color);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        color: var(--text-color);
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 8px;
+        appearance: none; /* Removes default browser styling */
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        background-size: 12px;
+        padding-right: 40px;
+        }
+
+        select:hover {
+        background-color: var(--surface-color);
+        border-color: var(--accent-color);
+        }
+
+        select option {
+        background-color: var(--background-color);
+        color: var(--text-color);
+        padding: 12px;
+        }
+
+        select option:checked {
+        background-color: var(--accent-color);
+        color: white;
+        }
+
+        :root[data-theme="light"] select {
+        background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23000000%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+        }
+
+
+        .length-toggle {
+            display: flex;
+            gap: 8px;
+            margin: 16px 0;
+        }
+
+        .length-toggle button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            background: var(--surface-color);
+            color: var(--text-color);
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 14px;
+        }
+
+        .length-toggle button.active {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .save-button {
+            display: block;
+            width: 200px;
+            margin: 40px auto 0;
+            padding: 12px 24px;
+            background: var(--accent-color);
+            border: none;
+            border-radius: 24px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .save-button:hover {
+            background: var(--accent-hover-color);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="icons/icon48.png" alt="Logo">
+            <span>Summariser</span>
+        </div>
+        <button id="themeToggle" class="theme-toggle">
+            <span class="material-icons">light_mode</span>
+        </button>
+    </header>
+
+    <div class="main-content">
+        <h1>Settings</h1>
+
+        <div class="settings-section">
+            <h2>Autosave Summaries</h2>
+            <div class="checkbox-wrapper">
+                <input type="checkbox" id="autosave">
+                <label for="autosave">Automatically save summary when completed.</label>
+            </div>
+        </div>
+
+        <div class="settings-section">
+            <h2>Translate Summaries</h2>
+            <div class="settings-description">
+                Choose a language for your summaries to be translated to.<br>
+                If you select Don't Translate, the language of the original content will be used.
+            </div>
+            <select id="translateLang">
+                <option value="none">🌐 Don't Translate</option>
+                <option value="es">🇪🇸 Spanish</option>
+                <option value="fr">🇫🇷 French</option>
+                <option value="de">🇩🇪 German</option>
+                <option value="it">🇮🇹 Italian</option>
+                <option value="pt">🇵🇹 Portuguese</option>
+                <option value="ru">🇷🇺 Russian</option>
+                <option value="ja">🇯🇵 Japanese</option>
+                <option value="ko">🇰🇷 Korean</option>
+                <option value="zh">🇨🇳 Chinese (Simplified)</option>
+            </select>
+        </div>
+
+        <div class="settings-section">
+            <h2>Summary Length</h2>
+            <div class="settings-description">
+                Choose the default length for your summaries.
+            </div>
+            <div class="length-toggle">
+                <button id="conciseBtn">Concise</button>
+                <button id="detailedBtn" class="active">Detailed</button>
+            </div>
+            <div class="settings-description">
+                Detailed summaries offer a comprehensive breakdown of the content and aim to capture all important points.
+            </div>
+        </div>
+
+        <button id="saveSettings" class="save-button">Save</button>
+    </div>
+
+    <script src="options.js"></script>
+</body>
+</html>
