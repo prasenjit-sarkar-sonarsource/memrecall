@@ -2,7 +2,78 @@
 
 A powerful Chrome extension that summarizes web content, YouTube videos, PDFs, Podcast, Blogs, Wikipedia using OpenAI's GPT API. Get concise or detailed summaries with keyword extraction and content categorization.
 
-![Extension Demo](icons/demo.png)
+```mermaid
+graph LR
+    %% Main Components
+    User((User)) --> |Interacts| P[Popup UI]
+    User --> |Configures| S[Settings Page]
+    
+    %% Core Components
+    subgraph "Chrome Extension Components"
+        P[Popup UI] --> |Triggers| BG[Background Script]
+        S[Settings Page] --> |Saves| CS[(Chrome Storage)]
+        BG --> |Reads| CS
+        BG --> |Injects| CON[Content Script]
+        CON --> |Extracts| C[Content]
+    end
+
+    %% Content Processing
+    subgraph "Content Detection & Extraction"
+        C --> |Detects| CT{Content Type}
+        CT -->|Article| WA[Web Articles]
+        CT -->|Video| YT[YouTube]
+        CT -->|Document| PD[PDF Documents]
+        CT -->|Audio| PC[Podcasts]
+        CT -->|Blog| BL[Blog Posts]
+        CT -->|Wiki| WK[Wikipedia]
+
+        %% Content Handlers
+        subgraph "Specialized Handlers"
+            WA --> |Extract| TEX[Text Extractor]
+            YT --> |Extract| VID[Video Info & Transcripts]
+            PD --> |Extract| PDF[PDF Parser]
+            PC --> |Extract| AUD[Audio Transcripts]
+            BL --> |Extract| BLG[Blog Parser]
+            WK --> |Extract| WIKI[Wiki Parser]
+        end
+    end
+
+    %% API Integration
+    subgraph "OpenAI API Processing"
+        BG --> |Sends| API[OpenAI API]
+        API --> |1. Summarizes| SP[Summary Processing]
+        API --> |2. Translates| TP[Translation Processing]
+        API --> |3. Categorizes| CP[Content Categories]
+        API --> |4. Keywords| KW[Keyword Extraction]
+    end
+
+    %% Results Processing
+    SP --> |Returns| SUM[Summary]
+    TP --> |Returns| TR[Translated Content]
+    CP --> |Returns| CAT[Categories]
+    KW --> |Returns| KEY[Keywords]
+
+    %% Storage
+    subgraph "Data Storage"
+        SUM --> |Stores| CS
+        TR --> |Stores| CS
+        CAT --> |Stores| CS
+        KEY --> |Stores| CS
+    end
+
+    %% Styling
+    classDef primary fill:#6750a4,stroke:#333,stroke-width:2px,color:white;
+    classDef secondary fill:#2c2d31,stroke:#333,stroke-width:2px,color:white;
+    classDef handler fill:#4a90e2,stroke:#333,stroke-width:2px,color:white;
+    classDef api fill:#87CEEB,stroke:#333,stroke-width:2px;
+    classDef storage fill:#FFB6C1,stroke:#333,stroke-width:2px;
+    
+    class P,S,BG,CON primary;
+    class WA,YT,PD,PC,BL,WK secondary;
+    class TEX,VID,PDF,AUD,BLG,WIKI handler;
+    class API api;
+    class CS storage;
+```
 
 ## 🌟 Features
 
