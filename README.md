@@ -93,15 +93,16 @@ The extension supports automatic translation of summaries into multiple language
 
 #### Supported Languages
 
-🇪🇸 Spanish
-🇫🇷 French
-🇩🇪 German
-🇮🇹 Italian
-🇵🇹 Portuguese
-🇷🇺 Russian
-🇯🇵 Japanese
-🇰🇷 Korean
-🇨🇳 Chinese (Simplified)
+- 🇪🇸 Spanish
+- 🇫🇷 French
+- 🇩🇪 German
+- 🇮🇹 Italian
+- 🇵🇹 Portuguese
+- 🇷🇺 Russian
+- 🇯🇵 Japanese
+- 🇰🇷 Korean
+- 🇨🇳 Chinese (Simplified)
+  
 
 ![image](https://github.com/user-attachments/assets/51f50d39-e14a-4390-839e-c5967de06392)
 
