@@ -1,11 +1,20 @@
-// Your existing API configuration remains the same
-const OPENAI_API_KEY = '';
-const API_URL = 'https://api.openai.com/v1/chat/completions';
-const MODEL = 'gpt-4o-2024-08-06';
-const MAX_INPUT_TOKENS = 8000;
-const MAX_OUTPUT_TOKENS = 4000;
-const MAX_TOTAL_OUTPUT = 16000;
+import { config } from './config';
 
+// Initialize service worker
+self.addEventListener('install', (event) => {
+    console.log('Service Worker installing.');
+});
+
+self.addEventListener('activate', (event) => {
+    console.log('Service Worker activating.');
+});
+
+// Your API configuration
+const OPENAI_API_KEY = config.OPENAI_API_KEY;
+const API_URL = config.API_URL;
+const MODEL = config.MODEL;
+const MAX_INPUT_TOKENS = config.MAX_INPUT_TOKENS;
+const MAX_OUTPUT_TOKENS = config.MAX_OUTPUT_TOKENS;
 
 const SUMMARY_PROMPTS = {
     concise: {

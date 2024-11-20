@@ -1,2 +1,323 @@
-/*! For license information please see content.bundle.js.LICENSE.txt */
-(()=>{function t(e){return t="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},t(e)}function e(t,e){var r=Object.keys(t);if(Object.getOwnPropertySymbols){var n=Object.getOwnPropertySymbols(t);e&&(n=n.filter((function(e){return Object.getOwnPropertyDescriptor(t,e).enumerable}))),r.push.apply(r,n)}return r}function r(t){for(var r=1;r<arguments.length;r++){var o=null!=arguments[r]?arguments[r]:{};r%2?e(Object(o),!0).forEach((function(e){n(t,e,o[e])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(o)):e(Object(o)).forEach((function(e){Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(o,e))}))}return t}function n(e,r,n){return(r=function(e){var r=function(e){if("object"!=t(e)||!e)return e;var r=e[Symbol.toPrimitive];if(void 0!==r){var n=r.call(e,"string");if("object"!=t(n))return n;throw new TypeError("@@toPrimitive must return a primitive value.")}return String(e)}(e);return"symbol"==t(r)?r:r+""}(r))in e?Object.defineProperty(e,r,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[r]=n,e}function o(){"use strict";o=function(){return r};var e,r={},n=Object.prototype,i=n.hasOwnProperty,c=Object.defineProperty||function(t,e,r){t[e]=r.value},a="function"==typeof Symbol?Symbol:{},u=a.iterator||"@@iterator",l=a.asyncIterator||"@@asyncIterator",s=a.toStringTag||"@@toStringTag";function f(t,e,r){return Object.defineProperty(t,e,{value:r,enumerable:!0,configurable:!0,writable:!0}),t[e]}try{f({},"")}catch(e){f=function(t,e,r){return t[e]=r}}function p(t,e,r,n){var o=e&&e.prototype instanceof g?e:g,i=Object.create(o.prototype),a=new D(n||[]);return c(i,"_invoke",{value:S(t,r,a)}),i}function h(t,e,r){try{return{type:"normal",arg:t.call(e,r)}}catch(t){return{type:"throw",arg:t}}}r.wrap=p;var d="suspendedStart",y="suspendedYield",m="executing",v="completed",w={};function g(){}function b(){}function x(){}var j={};f(j,u,(function(){return this}));var E=Object.getPrototypeOf,L=E&&E(E(q([])));L&&L!==n&&i.call(L,u)&&(j=L);var O=x.prototype=g.prototype=Object.create(j);function P(t){["next","throw","return"].forEach((function(e){f(t,e,(function(t){return this._invoke(e,t)}))}))}function k(e,r){function n(o,c,a,u){var l=h(e[o],e,c);if("throw"!==l.type){var s=l.arg,f=s.value;return f&&"object"==t(f)&&i.call(f,"__await")?r.resolve(f.__await).then((function(t){n("next",t,a,u)}),(function(t){n("throw",t,a,u)})):r.resolve(f).then((function(t){s.value=t,a(s)}),(function(t){return n("throw",t,a,u)}))}u(l.arg)}var o;c(this,"_invoke",{value:function(t,e){function i(){return new r((function(r,o){n(t,e,r,o)}))}return o=o?o.then(i,i):i()}})}function S(t,r,n){var o=d;return function(i,c){if(o===m)throw Error("Generator is already running");if(o===v){if("throw"===i)throw c;return{value:e,done:!0}}for(n.method=i,n.arg=c;;){var a=n.delegate;if(a){var u=T(a,n);if(u){if(u===w)continue;return u}}if("next"===n.method)n.sent=n._sent=n.arg;else if("throw"===n.method){if(o===d)throw o=v,n.arg;n.dispatchException(n.arg)}else"return"===n.method&&n.abrupt("return",n.arg);o=m;var l=h(t,r,n);if("normal"===l.type){if(o=n.done?v:y,l.arg===w)continue;return{value:l.arg,done:n.done}}"throw"===l.type&&(o=v,n.method="throw",n.arg=l.arg)}}}function T(t,r){var n=r.method,o=t.iterator[n];if(o===e)return r.delegate=null,"throw"===n&&t.iterator.return&&(r.method="return",r.arg=e,T(t,r),"throw"===r.method)||"return"!==n&&(r.method="throw",r.arg=new TypeError("The iterator does not provide a '"+n+"' method")),w;var i=h(o,t.iterator,r.arg);if("throw"===i.type)return r.method="throw",r.arg=i.arg,r.delegate=null,w;var c=i.arg;return c?c.done?(r[t.resultName]=c.value,r.next=t.nextLoc,"return"!==r.method&&(r.method="next",r.arg=e),r.delegate=null,w):c:(r.method="throw",r.arg=new TypeError("iterator result is not an object"),r.delegate=null,w)}function F(t){var e={tryLoc:t[0]};1 in t&&(e.catchLoc=t[1]),2 in t&&(e.finallyLoc=t[2],e.afterLoc=t[3]),this.tryEntries.push(e)}function _(t){var e=t.completion||{};e.type="normal",delete e.arg,t.completion=e}function D(t){this.tryEntries=[{tryLoc:"root"}],t.forEach(F,this),this.reset(!0)}function q(r){if(r||""===r){var n=r[u];if(n)return n.call(r);if("function"==typeof r.next)return r;if(!isNaN(r.length)){var o=-1,c=function t(){for(;++o<r.length;)if(i.call(r,o))return t.value=r[o],t.done=!1,t;return t.value=e,t.done=!0,t};return c.next=c}}throw new TypeError(t(r)+" is not iterable")}return b.prototype=x,c(O,"constructor",{value:x,configurable:!0}),c(x,"constructor",{value:b,configurable:!0}),b.displayName=f(x,s,"GeneratorFunction"),r.isGeneratorFunction=function(t){var e="function"==typeof t&&t.constructor;return!!e&&(e===b||"GeneratorFunction"===(e.displayName||e.name))},r.mark=function(t){return Object.setPrototypeOf?Object.setPrototypeOf(t,x):(t.__proto__=x,f(t,s,"GeneratorFunction")),t.prototype=Object.create(O),t},r.awrap=function(t){return{__await:t}},P(k.prototype),f(k.prototype,l,(function(){return this})),r.AsyncIterator=k,r.async=function(t,e,n,o,i){void 0===i&&(i=Promise);var c=new k(p(t,e,n,o),i);return r.isGeneratorFunction(e)?c:c.next().then((function(t){return t.done?t.value:c.next()}))},P(O),f(O,s,"Generator"),f(O,u,(function(){return this})),f(O,"toString",(function(){return"[object Generator]"})),r.keys=function(t){var e=Object(t),r=[];for(var n in e)r.push(n);return r.reverse(),function t(){for(;r.length;){var n=r.pop();if(n in e)return t.value=n,t.done=!1,t}return t.done=!0,t}},r.values=q,D.prototype={constructor:D,reset:function(t){if(this.prev=0,this.next=0,this.sent=this._sent=e,this.done=!1,this.delegate=null,this.method="next",this.arg=e,this.tryEntries.forEach(_),!t)for(var r in this)"t"===r.charAt(0)&&i.call(this,r)&&!isNaN(+r.slice(1))&&(this[r]=e)},stop:function(){this.done=!0;var t=this.tryEntries[0].completion;if("throw"===t.type)throw t.arg;return this.rval},dispatchException:function(t){if(this.done)throw t;var r=this;function n(n,o){return a.type="throw",a.arg=t,r.next=n,o&&(r.method="next",r.arg=e),!!o}for(var o=this.tryEntries.length-1;o>=0;--o){var c=this.tryEntries[o],a=c.completion;if("root"===c.tryLoc)return n("end");if(c.tryLoc<=this.prev){var u=i.call(c,"catchLoc"),l=i.call(c,"finallyLoc");if(u&&l){if(this.prev<c.catchLoc)return n(c.catchLoc,!0);if(this.prev<c.finallyLoc)return n(c.finallyLoc)}else if(u){if(this.prev<c.catchLoc)return n(c.catchLoc,!0)}else{if(!l)throw Error("try statement without catch or finally");if(this.prev<c.finallyLoc)return n(c.finallyLoc)}}}},abrupt:function(t,e){for(var r=this.tryEntries.length-1;r>=0;--r){var n=this.tryEntries[r];if(n.tryLoc<=this.prev&&i.call(n,"finallyLoc")&&this.prev<n.finallyLoc){var o=n;break}}o&&("break"===t||"continue"===t)&&o.tryLoc<=e&&e<=o.finallyLoc&&(o=null);var c=o?o.completion:{};return c.type=t,c.arg=e,o?(this.method="next",this.next=o.finallyLoc,w):this.complete(c)},complete:function(t,e){if("throw"===t.type)throw t.arg;return"break"===t.type||"continue"===t.type?this.next=t.arg:"return"===t.type?(this.rval=this.arg=t.arg,this.method="return",this.next="end"):"normal"===t.type&&e&&(this.next=e),w},finish:function(t){for(var e=this.tryEntries.length-1;e>=0;--e){var r=this.tryEntries[e];if(r.finallyLoc===t)return this.complete(r.completion,r.afterLoc),_(r),w}},catch:function(t){for(var e=this.tryEntries.length-1;e>=0;--e){var r=this.tryEntries[e];if(r.tryLoc===t){var n=r.completion;if("throw"===n.type){var o=n.arg;_(r)}return o}}throw Error("illegal catch attempt")},delegateYield:function(t,r,n){return this.delegate={iterator:q(t),resultName:r,nextLoc:n},"next"===this.method&&(this.arg=e),w}},r}function i(t,e,r,n,o,i,c){try{var a=t[i](c),u=a.value}catch(t){return void r(t)}a.done?e(u):Promise.resolve(u).then(n,o)}function c(t){return function(){var e=this,r=arguments;return new Promise((function(n,o){var c=t.apply(e,r);function a(t){i(c,n,o,a,u,"next",t)}function u(t){i(c,n,o,a,u,"throw",t)}a(void 0)}))}}var a=null;function u(){return l.apply(this,arguments)}function l(){return(l=c(o().mark((function t(){return o().wrap((function(t){for(;;)switch(t.prev=t.next){case 0:if(!a){t.next=2;break}return t.abrupt("return",a);case 2:return t.abrupt("return",new Promise((function(t,e){var r=document.createElement("script");r.src=chrome.runtime.getURL("lib/pdf.min.js"),r.onload=function(){var r=document.createElement("script");r.src=chrome.runtime.getURL("lib/pdf.worker.min.js"),r.onload=function(){try{window["pdfjs-dist/build/pdf"]?((a=window["pdfjs-dist/build/pdf"]).GlobalWorkerOptions.workerSrc=chrome.runtime.getURL("lib/pdf.worker.min.js"),t(a)):window.pdfjsLib?((a=window.pdfjsLib).GlobalWorkerOptions.workerSrc=chrome.runtime.getURL("lib/pdf.worker.min.js"),t(a)):e(new Error("PDF.js library not found in window object"))}catch(t){e(new Error("PDF.js initialization error: ".concat(t.message)))}},r.onerror=function(){return e(new Error("Failed to load PDF.js worker"))},document.head.appendChild(r)},r.onerror=function(){return e(new Error("Failed to load PDF.js main script"))},document.head.appendChild(r)})));case 3:case"end":return t.stop()}}),t)})))).apply(this,arguments)}function s(){return f.apply(this,arguments)}function f(){return(f=c(o().mark((function t(){var e,r,n,i,c,a,l,s,f;return o().wrap((function(t){for(;;)switch(t.prev=t.next){case 0:return t.prev=0,t.next=3,u();case 3:if(e=t.sent){t.next=6;break}throw new Error("PDF.js library not initialized");case 6:return r=window.location.href,n=e.getDocument(r),t.next=10,n.promise;case 10:i=t.sent,c="",a=i.numPages,l=1;case 14:if(!(l<=a)){t.next=31;break}return t.prev=15,t.next=18,i.getPage(l);case 18:return s=t.sent,t.next=21,s.getTextContent();case 21:f=t.sent,c+=f.items.map((function(t){return t.str})).join(" ").replace(/\s+/g," ")+"\n\n",t.next=28;break;case 25:t.prev=25,t.t0=t.catch(15),console.error("Error extracting content from page ".concat(l,":"),t.t0);case 28:l++,t.next=14;break;case 31:if(c.trim()){t.next=33;break}throw new Error("No text content could be extracted from PDF");case 33:return t.abrupt("return",c.trim());case 36:throw t.prev=36,t.t1=t.catch(0),console.error("PDF extraction error:",t.t1),new Error("Failed to extract PDF content: ".concat(t.t1.message));case 40:case"end":return t.stop()}}),t,null,[[0,36],[15,25]])})))).apply(this,arguments)}function p(){var t,e,r,n,o,i,c,a=function(t){try{var e=new URL(t);return e.hostname.includes("youtube.com")&&e.searchParams.get("v")||null}catch(t){return console.error("Error parsing URL:",t),null}}(window.location.href),u=((c=null===(t=document.querySelector('meta[property="og:image"]'))||void 0===t?void 0:t.content)||(c=null===(e=document.querySelector('meta[name="twitter:image"]'))||void 0===e?void 0:e.content),c||(c=(null===(r=document.querySelector('meta[name="thumbnail"]'))||void 0===r?void 0:r.content)||(null===(n=document.querySelector('link[rel="image_src"]'))||void 0===n?void 0:n.href)),"github.com"!==window.location.hostname||c||(c=(null===(o=document.querySelector(".avatar-user"))||void 0===o?void 0:o.src)||(null===(i=document.querySelector(".avatar"))||void 0===i?void 0:i.src)),c&&!c.startsWith("http")&&(c=new URL(c,window.location.origin).href),c);if(window.location.hostname.includes("youtube.com")){var l=document.querySelector("h1.title.style-scope.ytd-video-primary-info-renderer"),s=document.querySelector("#description-text");return{content:"Title: ".concat(l?l.textContent.trim():"N/A","\n\nDescription: ").concat(s?s.textContent.trim():"N/A"),videoId:a,featuredImage:null}}var f=document.querySelector("article"),p=document.querySelector("main");return{content:f?f.innerText:p?p.innerText:document.body.innerText,videoId:null,featuredImage:u}}function h(){return d.apply(this,arguments)}function d(){return(d=c(o().mark((function t(){var e,r,n,i,c,a,u,l,s;return o().wrap((function(t){for(;;)switch(t.prev=t.next){case 0:return t.prev=0,e=window.location.href,r="",n="",e.includes("youtube.com")?(n=(null===(i=document.querySelector("h1.title"))||void 0===i?void 0:i.textContent)||"",a=(null===(c=document.querySelector("#description-text"))||void 0===c?void 0:c.textContent)||"",r="".concat(n," ").concat(a)):"application/pdf"===document.contentType?(n=document.title||"",r=document.body.innerText.slice(0,2e3)):(n=document.title||"",u=document.querySelector("article, main, .content")||document.body,r=u.innerText.slice(0,2e3)),l={action:"categorize",data:{title:n,content:r,url:e}},t.next=8,chrome.runtime.sendMessage(l);case 8:return s=t.sent,t.abrupt("return",(null==s?void 0:s.category)||{type:"Other",subtype:"General"});case 12:return t.prev=12,t.t0=t.catch(0),console.error("Error detecting content type:",t.t0),t.abrupt("return",{type:"Other",subtype:"General"});case 16:case"end":return t.stop()}}),t,null,[[0,12]])})))).apply(this,arguments)}function y(){return(y=c(o().mark((function t(){var e,n,i,c;return o().wrap((function(t){for(;;)switch(t.prev=t.next){case 0:return t.prev=0,t.next=3,h();case 3:if(n=t.sent,"application/pdf"!==document.contentType){t.next=11;break}return t.next=7,s();case 7:i=t.sent,e={content:i,videoId:null,featuredImage:null,contentType:n},t.next=13;break;case 11:c=p(),e=r(r({},c),{},{contentType:n});case 13:if(e.content){t.next=15;break}throw new Error("No content could be extracted");case 15:return t.abrupt("return",e);case 18:throw t.prev=18,t.t0=t.catch(0),console.error("Error in extractContent:",t.t0),t.t0;case 22:case"end":return t.stop()}}),t,null,[[0,18]])})))).apply(this,arguments)}chrome.runtime.onMessage.addListener((function(t,e,r){if("getContent"===t.action)return function(){return y.apply(this,arguments)}().then((function(t){t.content&&t.content.length>0?r(t):r({error:"No content could be extracted"})})).catch((function(t){console.error("Error in message listener:",t),r({error:"Error extracting content: ".concat(t.message)})})),!0})),"application/pdf"===document.contentType&&u().catch(console.error)})();
+/******/ (() => { // webpackBootstrap
+// PDF.js library management
+let pdfjsLib = null;
+const PDF_CHUNK_SIZE = 10; // Number of pages to process at once
+
+async function loadPdfJs() {
+  if (pdfjsLib) return pdfjsLib;
+  return new Promise((resolve, reject) => {
+    // First, load the main PDF.js script
+    const script = document.createElement('script');
+    script.src = chrome.runtime.getURL('lib/pdf.min.js');
+    script.onload = () => {
+      // Initialize worker
+      const workerScript = document.createElement('script');
+      workerScript.src = chrome.runtime.getURL('lib/pdf.worker.min.js');
+      workerScript.onload = () => {
+        try {
+          // Get pdfjsLib from the window object
+          if (window['pdfjs-dist/build/pdf']) {
+            pdfjsLib = window['pdfjs-dist/build/pdf'];
+            pdfjsLib.GlobalWorkerOptions.workerSrc = chrome.runtime.getURL('lib/pdf.worker.min.js');
+            resolve(pdfjsLib);
+          } else if (window.pdfjsLib) {
+            pdfjsLib = window.pdfjsLib;
+            pdfjsLib.GlobalWorkerOptions.workerSrc = chrome.runtime.getURL('lib/pdf.worker.min.js');
+            resolve(pdfjsLib);
+          } else {
+            reject(new Error('PDF.js library not found in window object'));
+          }
+        } catch (error) {
+          reject(new Error(`PDF.js initialization error: ${error.message}`));
+        }
+      };
+      workerScript.onerror = () => reject(new Error('Failed to load PDF.js worker'));
+      document.head.appendChild(workerScript);
+    };
+    script.onerror = () => reject(new Error('Failed to load PDF.js main script'));
+    document.head.appendChild(script);
+  });
+}
+
+// PDF content extraction
+async function extractPdfContent() {
+  try {
+    // Load PDF.js
+    const pdfLib = await loadPdfJs();
+    if (!pdfLib) {
+      throw new Error('PDF.js library not initialized');
+    }
+
+    // Get the PDF URL
+    const pdfUrl = window.location.href;
+
+    // Load the PDF document
+    const loadingTask = pdfLib.getDocument(pdfUrl);
+    const pdf = await loadingTask.promise;
+    let content = '';
+    const numPages = pdf.numPages;
+
+    // Process pages in chunks
+    for (let i = 1; i <= numPages; i++) {
+      try {
+        const page = await pdf.getPage(i);
+        const textContent = await page.getTextContent();
+        content += textContent.items.map(item => item.str).join(' ').replace(/\s+/g, ' ') + '\n\n';
+      } catch (pageError) {
+        console.error(`Error extracting content from page ${i}:`, pageError);
+        // Continue with next page even if one fails
+      }
+    }
+    if (!content.trim()) {
+      throw new Error('No text content could be extracted from PDF');
+    }
+    return content.trim();
+  } catch (error) {
+    console.error('PDF extraction error:', error);
+    throw new Error(`Failed to extract PDF content: ${error.message}`);
+  }
+}
+async function loadPdfAndGetDocument() {
+  const pdfLib = await loadPdfJs();
+  return await pdfLib.getDocument(window.location.href).promise;
+}
+async function processPdfChunk(pdf, startPage, endPage) {
+  let chunkContent = '';
+  for (let pageNum = startPage + 1; pageNum <= endPage; pageNum++) {
+    try {
+      const page = await pdf.getPage(pageNum);
+      const textContent = await page.getTextContent();
+      const pageText = textContent.items.map(item => item.str).join(' ').replace(/\s+/g, ' ');
+      chunkContent += pageText + '\n\n';
+    } catch (error) {
+      console.error(`Error processing PDF page ${pageNum}:`, error);
+    }
+  }
+  return chunkContent;
+}
+
+// YouTube content extraction
+function getYouTubeVideoId(url) {
+  try {
+    const urlObj = new URL(url);
+    if (urlObj.hostname.includes('youtube.com')) {
+      return urlObj.searchParams.get('v') || null;
+    }
+    return null;
+  } catch (error) {
+    console.error('Error parsing URL:', error);
+    return null;
+  }
+}
+async function extractYouTubeContent() {
+  const videoId = getYouTubeVideoId(window.location.href);
+  const maxRetries = 5;
+  let retries = 0;
+  while (retries < maxRetries) {
+    const title = document.querySelector('h1.title.style-scope.ytd-video-primary-info-renderer');
+    const description = document.querySelector('#description-text');
+    const timestamp = document.querySelector('ytd-video-primary-info-renderer .ytd-video-primary-info-renderer');
+    const channel = document.querySelector('#channel-name .ytd-channel-name');
+    if (title && description) {
+      return {
+        content: formatYouTubeContent(title, description, timestamp, channel),
+        videoId: videoId
+      };
+    }
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    retries++;
+  }
+  throw new Error('Could not extract YouTube content after multiple attempts');
+}
+function formatYouTubeContent(title, description, timestamp, channel) {
+  let content = '';
+  content += `# ${title.textContent.trim()}\n\n`;
+  if (channel) {
+    content += `Channel: ${channel.textContent.trim()}\n`;
+  }
+  if (timestamp) {
+    content += `Published: ${timestamp.textContent.trim()}\n`;
+  }
+  content += `\n## Description\n\n${description.textContent.trim()}`;
+  return content;
+}
+function extractFeaturedImage() {
+  var _document$querySelect;
+  // Try Open Graph image first
+  let imageUrl = (_document$querySelect = document.querySelector('meta[property="og:image"]')) === null || _document$querySelect === void 0 ? void 0 : _document$querySelect.content;
+  if (!imageUrl) {
+    var _document$querySelect2;
+    // Try Twitter image
+    imageUrl = (_document$querySelect2 = document.querySelector('meta[name="twitter:image"]')) === null || _document$querySelect2 === void 0 ? void 0 : _document$querySelect2.content;
+  }
+  if (!imageUrl) {
+    var _document$querySelect3, _document$querySelect4;
+    // Try other common meta tags
+    imageUrl = ((_document$querySelect3 = document.querySelector('meta[name="thumbnail"]')) === null || _document$querySelect3 === void 0 ? void 0 : _document$querySelect3.content) || ((_document$querySelect4 = document.querySelector('link[rel="image_src"]')) === null || _document$querySelect4 === void 0 ? void 0 : _document$querySelect4.href);
+  }
+
+  // Special handling for GitHub
+  if (window.location.hostname === 'github.com' && !imageUrl) {
+    var _document$querySelect5, _document$querySelect6;
+    // Try to get repository owner's avatar or organization image
+    imageUrl = ((_document$querySelect5 = document.querySelector('.avatar-user')) === null || _document$querySelect5 === void 0 ? void 0 : _document$querySelect5.src) || ((_document$querySelect6 = document.querySelector('.avatar')) === null || _document$querySelect6 === void 0 ? void 0 : _document$querySelect6.src);
+  }
+
+  // Make sure we have an absolute URL
+  if (imageUrl && !imageUrl.startsWith('http')) {
+    imageUrl = new URL(imageUrl, window.location.origin).href;
+  }
+  return imageUrl;
+}
+function extractWebContent() {
+  const url = window.location.href;
+  const videoId = getYouTubeVideoId(url);
+  const featuredImage = extractFeaturedImage();
+  if (window.location.hostname.includes('youtube.com')) {
+    const title = document.querySelector('h1.title.style-scope.ytd-video-primary-info-renderer');
+    const description = document.querySelector('#description-text');
+    return {
+      content: `Title: ${title ? title.textContent.trim() : 'N/A'}\n\nDescription: ${description ? description.textContent.trim() : 'N/A'}`,
+      videoId: videoId,
+      featuredImage: null // For YouTube, we'll use the video thumbnail
+    };
+  } else {
+    const article = document.querySelector('article');
+    const main = document.querySelector('main');
+    return {
+      content: article ? article.innerText : main ? main.innerText : document.body.innerText,
+      videoId: null,
+      featuredImage: featuredImage
+    };
+  }
+}
+
+// General web content extraction
+function extractArticleContent() {
+  // Try to find the main article content
+  const selectors = ['article', '[role="article"]', 'main', '.main-content', '#main-content', '.post-content', '.article-content', '.content-body'];
+  for (const selector of selectors) {
+    const element = document.querySelector(selector);
+    if (element) {
+      return cleanAndFormatContent(element);
+    }
+  }
+
+  // Fallback to body content
+  return cleanAndFormatContent(document.body);
+}
+function cleanAndFormatContent(element) {
+  // Remove unwanted elements
+  const unwantedSelectors = ['script', 'style', 'nav', 'header', 'footer', 'iframe', '.advertisement', '.social-share', '.comments', '.sidebar'];
+  const clone = element.cloneNode(true);
+  unwantedSelectors.forEach(selector => {
+    const elements = clone.querySelectorAll(selector);
+    elements.forEach(el => el.remove());
+  });
+
+  // Clean and format the text
+  return clone.innerText.replace(/(\n\s*){3,}/g, '\n\n') // Remove excessive newlines
+  .replace(/\s+/g, ' ') // Remove excessive whitespace
+  .trim();
+}
+async function detectContentType() {
+  try {
+    const url = window.location.href;
+    let contentToAnalyze = '';
+    let title = '';
+
+    // Extract content based on source type
+    if (url.includes('youtube.com')) {
+      var _document$querySelect7, _document$querySelect8;
+      title = ((_document$querySelect7 = document.querySelector('h1.title')) === null || _document$querySelect7 === void 0 ? void 0 : _document$querySelect7.textContent) || '';
+      const description = ((_document$querySelect8 = document.querySelector('#description-text')) === null || _document$querySelect8 === void 0 ? void 0 : _document$querySelect8.textContent) || '';
+      contentToAnalyze = `${title} ${description}`;
+    } else if (document.contentType === 'application/pdf') {
+      title = document.title || '';
+      contentToAnalyze = document.body.innerText.slice(0, 2000);
+    } else {
+      title = document.title || '';
+      const mainContent = document.querySelector('article, main, .content') || document.body;
+      contentToAnalyze = mainContent.innerText.slice(0, 2000);
+    }
+
+    // Send content for categorization
+    const message = {
+      action: "categorize",
+      data: {
+        title: title,
+        content: contentToAnalyze,
+        url: url
+      }
+    };
+    const response = await chrome.runtime.sendMessage(message);
+    return (response === null || response === void 0 ? void 0 : response.category) || {
+      type: 'Other',
+      subtype: 'General'
+    };
+  } catch (error) {
+    console.error('Error detecting content type:', error);
+    return {
+      type: 'Other',
+      subtype: 'General'
+    };
+  }
+}
+
+// Main content extraction handler
+async function extractContent() {
+  try {
+    let result;
+    const contentType = await detectContentType();
+    if (document.contentType === 'application/pdf') {
+      const pdfContent = await extractPdfContent();
+      result = {
+        content: pdfContent,
+        videoId: null,
+        featuredImage: null,
+        contentType: contentType
+      };
+    } else {
+      const webContent = extractWebContent();
+      result = {
+        ...webContent,
+        contentType: contentType
+      };
+    }
+    if (!result.content) {
+      throw new Error('No content could be extracted');
+    }
+    return result;
+  } catch (error) {
+    console.error('Error in extractContent:', error);
+    throw error;
+  }
+}
+
+// Message handling
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.action === "getContent") {
+    extractContent().then(result => {
+      if (result.content && result.content.length > 0) {
+        sendResponse(result);
+      } else {
+        sendResponse({
+          error: 'No content could be extracted'
+        });
+      }
+    }).catch(error => {
+      console.error('Error in message listener:', error);
+      sendResponse({
+        error: `Error extracting content: ${error.message}`
+      });
+    });
+    return true; // Indicates we will respond asynchronously
+  }
+});
+
+// Initialize PDF.js if needed
+if (document.contentType === 'application/pdf') {
+  loadPdfJs().catch(console.error);
+}
+/******/ })()
+;

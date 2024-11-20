@@ -55,7 +55,13 @@
                 "popup.js",
                 "lib/pdf.min.js",
                 "lib/pdf.worker.min.js",
-                "lib/marked.min.js"
+                "lib/marked.min.js",
+                "library.html",
+                "dist/*",
+                "lib/*",
+                "styles/*",
+                "icons/*",
+                "options.html"
                 
             ],
             "matches": ["<all_urls>"]

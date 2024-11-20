@@ -1,4 +1,5 @@
 const path = require('path');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: {
@@ -9,6 +10,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].bundle.js',
+    clean: true
   },
   module: {
     rules: [
@@ -19,13 +21,14 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: [
-              '@babel/preset-env',
+              ['@babel/preset-env', {
+                targets: {
+                  chrome: "88"
+                }
+              }],
               ['@babel/preset-react', {
                 runtime: 'automatic'
               }]
-            ],
-            plugins: [
-              'transform-react-jsx'
             ]
           }
         }
@@ -36,7 +39,20 @@ module.exports = {
     extensions: ['.js', '.jsx'],
     fallback: {
       "path": false,
-      "fs": false
+      "fs": false,
+      "os": false,
+      "crypto": false
     }
+  },
+  plugins: [
+    new Dotenv({
+      systemvars: true,
+      safe: false,
+      defaults: false,
+      path: '.env'
+    })
+  ],
+  optimization: {
+    minimize: false
   }
 };
