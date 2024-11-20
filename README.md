@@ -227,6 +227,126 @@ graph TD
     J --> K
 ```
 
+
+### ⏳ Sequence Diagram
+
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant P as Popup UI
+    participant BG as Background Script
+    participant CS as Content Script
+    participant H as Content Handlers
+    participant API as OpenAI API
+    participant ST as Chrome Storage
+
+    U->>P: Clicks Extension Icon
+    P->>BG: Request Summary
+    BG->>CS: Detect Content Type
+    CS->>H: Route to Appropriate Handler
+    
+    alt Web Article
+        H->>CS: Extract Article Content
+    else YouTube Video
+        H->>CS: Extract Video Info & Transcript
+    else PDF Document
+        H->>CS: Parse PDF Content
+    else Podcast
+        H->>CS: Get Audio Transcript
+    else Blog Post
+        H->>CS: Parse Blog Content
+    else Wikipedia
+        H->>CS: Extract Wiki Content
+    end
+    
+    CS-->>BG: Return Processed Content
+    
+    BG->>ST: Check Settings
+    ST-->>BG: Return Language Preference
+    
+    BG->>API: Request Summary
+    API-->>BG: Return Summary
+    
+    BG->>API: Extract Keywords
+    API-->>BG: Return Keywords
+    
+    alt Translation Enabled
+        BG->>API: Request Translation
+        API-->>BG: Return Translated Text
+    end
+    
+    BG->>API: Categorize Content
+    API-->>BG: Return Categories
+    
+    BG->>ST: Store Results
+    
+    BG-->>P: Return Complete Result
+    P-->>U: Display Summary & Options
+    
+    Note over U,P: User can toggle between original and translated content
+```
+
+#### 🧩 Component Structure
+
+```mermaid
+graph TD
+    subgraph "Extension Structure"
+        Root[Chrome Extension]
+        Root --> Popup[Popup Interface]
+        Root --> Background[Background Service]
+        Root --> Content[Content Scripts]
+        Root --> Settings[Settings Page]
+        
+        subgraph "Popup Components"
+            Popup --> Sum[Summary Display]
+            Popup --> KW[Keyword Pills]
+            Popup --> Cat[Category Tags]
+            Sum --> Trans[Translation Toggle]
+            Sum --> Export[Export Options]
+            Sum --> Media[Media Preview]
+        end
+        
+        subgraph "Background Services"
+            Background --> API[API Service]
+            Background --> Store[Storage Service]
+            Background --> Trans2[Translation Service]
+        end
+        
+        subgraph "Content Handlers"
+            Content --> Web[Article Extractor]
+            Content --> YT[YouTube Handler]
+            Content --> PDF[PDF Processor]
+            Content --> Pod[Podcast Handler]
+            Content --> Blog[Blog Parser]
+            Content --> Wiki[Wikipedia Parser]
+            
+            subgraph "Content Processing"
+                Web & YT & PDF & Pod & Blog & Wiki --> Text[Text Processing]
+                Web & YT & PDF & Pod & Blog & Wiki --> Meta[Metadata Extraction]
+                YT & Pod --> Media2[Media Processing]
+            end
+        end
+        
+        subgraph "Settings Components"
+            Settings --> Lang[Language Selector]
+            Settings --> Auto[Autosave Toggle]
+            Settings --> Theme[Theme Switch]
+            Settings --> Prefs[Content Preferences]
+        end
+    end
+    
+    classDef component fill:#6750a4,stroke:#333,stroke-width:2px,color:white;
+    classDef service fill:#2c2d31,stroke:#333,stroke-width:2px,color:white;
+    classDef handler fill:#4a90e2,stroke:#333,stroke-width:2px,color:white;
+    classDef ui fill:#87CEEB,stroke:#333,stroke-width:2px;
+    
+    class Root,Popup,Background,Content,Settings component;
+    class API,Store,Trans2 service;
+    class Web,YT,PDF,Pod,Blog,Wiki handler;
+    class Sum,KW,Cat,Trans,Export,Lang,Auto,Theme ui;
+```
+
 ## 🗂 Project Structure
 
 ```
