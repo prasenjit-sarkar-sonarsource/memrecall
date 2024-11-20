@@ -88,6 +88,44 @@ Before installing the extension, ensure you have:
 2. Select summary mode (Concise/Detailed)
 3. Click "Summarize" button
 
+### 🌍 Translation Features
+The extension supports automatic translation of summaries into multiple languages:
+
+#### Supported Languages
+
+🇪🇸 Spanish
+🇫🇷 French
+🇩🇪 German
+🇮🇹 Italian
+🇵🇹 Portuguese
+🇷🇺 Russian
+🇯🇵 Japanese
+🇰🇷 Korean
+🇨🇳 Chinese (Simplified)
+
+![image](https://github.com/user-attachments/assets/51f50d39-e14a-4390-839e-c5967de06392)
+
+
+#### Translation Settings
+
+1. Access settings through the extension options 
+2. Select your preferred target language
+3. Enable/disable autosave for translated summaries
+4. All new summaries will be automatically translated
+
+#### How Translation Works
+
+- Content is first summarized in the original language
+- If a target language is selected, the summary is automatically translated
+- Both original and translated versions are saved
+- Switch between languages anytime
+
+#### Note on Translation Quality
+
+- Translations are powered by OpenAI's API
+- Technical and domain-specific terms are preserved
+- Context and meaning are maintained across languages
+
 ### Keyboard Shortcuts
 - `Ctrl+Shift+S` (Windows/Linux) or `Cmd+Shift+S` (Mac): Open summarizer
 - `Alt+S`: Summarize current page
