@@ -140,6 +140,9 @@ graph TD
     C -->|Web Article| D[Extract Text]
     C -->|YouTube| E[Extract Video Info]
     C -->|PDF| F[Extract PDF Content]
+    C -->|Podcast| X[Extract Podcast Info]
+    C -->|Blogs| Y[Extract Blog Articles Info]
+    C -->|Wikipedia| Z[Extract Wikipedia Content]
     D --> G[Summarization]
     E --> G
     F --> G
