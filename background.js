@@ -9,7 +9,7 @@ self.addEventListener('activate', (event) => {
     console.log('Service Worker activating.');
 });
 
-// Your API configuration
+// API configuration
 const OPENAI_API_KEY = config.OPENAI_API_KEY;
 const API_URL = config.API_URL;
 const MODEL = config.MODEL;
@@ -104,7 +104,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                 });
             }
         })();
-        return true; // Indicates async response
+        return true; 
     }
 });
 
@@ -158,11 +158,11 @@ async function extractKeywords(content, mode) {
     }
 
     try {
-        // Limit content length and clean it up
+        
         const cleanContent = content
-            .substring(0, 4000)  // Limit length to avoid token limits
-            .replace(/[^\w\s.,?!-]/g, ' ')  // Remove special characters
-            .replace(/\s+/g, ' ')  // Normalize whitespace
+            .substring(0, 4000)  
+            .replace(/[^\w\s.,?!-]/g, ' ')  
+            .replace(/\s+/g, ' ')  
             .trim();
 
         const response = await fetch(API_URL, {
@@ -195,15 +195,15 @@ async function extractKeywords(content, mode) {
         const result = await response.json();
         const keywordContent = result.choices[0]?.message?.content?.trim() || '';
 
-        // Try multiple parsing approaches
+        
         try {
-            // First attempt: direct JSON parse
+            
             const keywords = JSON.parse(keywordContent);
             if (Array.isArray(keywords)) {
                 return keywords.filter(k => typeof k === 'string' && k.length > 0);
             }
 
-            // Second attempt: find array in text if direct parse fails
+            
             const arrayMatch = keywordContent.match(/\[(.*)\]/s);
             if (arrayMatch) {
                 const arrayContent = arrayMatch[1];
@@ -211,7 +211,7 @@ async function extractKeywords(content, mode) {
                 return Array.isArray(keywordArray) ? keywordArray.filter(k => typeof k === 'string' && k.length > 0) : [];
             }
 
-            // Third attempt: split by commas if it's a comma-separated list
+            
             if (keywordContent.includes(',')) {
                 return keywordContent
                     .split(',')
@@ -219,7 +219,7 @@ async function extractKeywords(content, mode) {
                     .filter(k => k.length > 0);
             }
 
-            // Fourth attempt: split by lines
+            
             return keywordContent
                 .split('\n')
                 .map(line => line.trim().replace(/^[-*•\s"']+|["']+$/g, ''))
@@ -228,7 +228,7 @@ async function extractKeywords(content, mode) {
         } catch (parseError) {
             console.error('Parsing error:', parseError);
             
-            // Final fallback: extract words between quotes or after dashes/bullets
+            
             const fallbackKeywords = keywordContent.match(/["']([^"']+)["']|\s*[-*•]\s*([^,\n]+)/g) || [];
             return fallbackKeywords
                 .map(k => k.trim().replace(/^[-*•\s"']+|["']+$/g, ''))
@@ -237,7 +237,7 @@ async function extractKeywords(content, mode) {
     } catch (error) {
         console.error('Keyword extraction error:', error);
         
-        // Last resort: extract important words from the content
+        
         const words = new Set(
             content
                 .split(/[\s.,!?()[\]{}"']+/)
@@ -256,7 +256,7 @@ async function summarizeContent(content, mode = 'detailed') {
     }
 
     try {
-        // First get the summary
+        
         const summaryResponse = await fetch(API_URL, {
             method: 'POST',
             headers: {
@@ -287,27 +287,27 @@ async function summarizeContent(content, mode = 'detailed') {
         const summaryResult = await summaryResponse.json();
         const summary = summaryResult.choices[0]?.message?.content || '';
 
-        // Then extract keywords
+        
         const keywords = await extractKeywords(content, mode);
 
-        // Get content type categorization
+        
         let categoryResult = { type: 'Other', subtype: 'General' };
         try {
             categoryResult = await categorizeContent({
-                title: '', // You might want to pass this from the content script
+                title: '', 
                 content: content.substring(0, 2000),
-                url: '' // You might want to pass this from the content script
+                url: '' 
             });
         } catch (error) {
             console.error('Categorization error:', error);
         }
 
-        // Build the result object
+        
         const resultObj = {
             summary: summary,
             keywords: keywords,
-            videoId: null, // This will be set by the content script if applicable
-            featuredImage: null, // This will be set by the content script if applicable
+            videoId: null, 
+            featuredImage: null, 
             contentType: categoryResult,
             timestamp: Date.now(),
             mode: mode
