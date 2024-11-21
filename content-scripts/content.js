@@ -1,23 +1,23 @@
-// PDF.js library management
+
 let pdfjsLib = null;
-const PDF_CHUNK_SIZE = 10; // Number of pages to process at once
+const PDF_CHUNK_SIZE = 10; 
 
 async function loadPdfJs() {
   if (pdfjsLib) return pdfjsLib;
 
   return new Promise((resolve, reject) => {
-      // First, load the main PDF.js script
+      
       const script = document.createElement('script');
       script.src = chrome.runtime.getURL('lib/pdf.min.js');
       
       script.onload = () => {
-          // Initialize worker
+          
           const workerScript = document.createElement('script');
           workerScript.src = chrome.runtime.getURL('lib/pdf.worker.min.js');
           
           workerScript.onload = () => {
               try {
-                  // Get pdfjsLib from the window object
+                  
                   if (window['pdfjs-dist/build/pdf']) {
                       pdfjsLib = window['pdfjs-dist/build/pdf'];
                       pdfjsLib.GlobalWorkerOptions.workerSrc = chrome.runtime.getURL('lib/pdf.worker.min.js');
@@ -43,26 +43,26 @@ async function loadPdfJs() {
   });
 }
 
-// PDF content extraction
+
 async function extractPdfContent() {
   try {
-      // Load PDF.js
+      
       const pdfLib = await loadPdfJs();
       if (!pdfLib) {
           throw new Error('PDF.js library not initialized');
       }
 
-      // Get the PDF URL
+      
       const pdfUrl = window.location.href;
       
-      // Load the PDF document
+      
       const loadingTask = pdfLib.getDocument(pdfUrl);
       const pdf = await loadingTask.promise;
       
       let content = '';
       const numPages = pdf.numPages;
 
-      // Process pages in chunks
+      
       for (let i = 1; i <= numPages; i++) {
           try {
               const page = await pdf.getPage(i);
@@ -76,7 +76,7 @@ async function extractPdfContent() {
               
           } catch (pageError) {
               console.error(`Error extracting content from page ${i}:`, pageError);
-              // Continue with next page even if one fails
+              
           }
       }
 
@@ -114,7 +114,7 @@ async function processPdfChunk(pdf, startPage, endPage) {
     return chunkContent;
 }
 
-// YouTube content extraction
+
 function getYouTubeVideoId(url) {
     try {
         const urlObj = new URL(url);
@@ -170,28 +170,28 @@ function formatYouTubeContent(title, description, timestamp, channel) {
 }
 
 function extractFeaturedImage() {
-  // Try Open Graph image first
+  
   let imageUrl = document.querySelector('meta[property="og:image"]')?.content;
   
   if (!imageUrl) {
-      // Try Twitter image
+      
       imageUrl = document.querySelector('meta[name="twitter:image"]')?.content;
   }
   
   if (!imageUrl) {
-      // Try other common meta tags
+      
       imageUrl = document.querySelector('meta[name="thumbnail"]')?.content ||
                 document.querySelector('link[rel="image_src"]')?.href;
   }
 
-  // Special handling for GitHub
+  
   if (window.location.hostname === 'github.com' && !imageUrl) {
-      // Try to get repository owner's avatar or organization image
+      
       imageUrl = document.querySelector('.avatar-user')?.src ||
                 document.querySelector('.avatar')?.src;
   }
 
-  // Make sure we have an absolute URL
+  
   if (imageUrl && !imageUrl.startsWith('http')) {
       imageUrl = new URL(imageUrl, window.location.origin).href;
   }
@@ -210,7 +210,7 @@ function extractWebContent() {
       return {
           content: `Title: ${title ? title.textContent.trim() : 'N/A'}\n\nDescription: ${description ? description.textContent.trim() : 'N/A'}`,
           videoId: videoId,
-          featuredImage: null  // For YouTube, we'll use the video thumbnail
+          featuredImage: null  
       };
   } else {
       const article = document.querySelector('article');
@@ -223,9 +223,9 @@ function extractWebContent() {
   }
 }
 
-// General web content extraction
+
 function extractArticleContent() {
-    // Try to find the main article content
+    
     const selectors = [
         'article',
         '[role="article"]',
@@ -244,12 +244,12 @@ function extractArticleContent() {
         }
     }
 
-    // Fallback to body content
+    
     return cleanAndFormatContent(document.body);
 }
 
 function cleanAndFormatContent(element) {
-    // Remove unwanted elements
+    
     const unwantedSelectors = [
         'script',
         'style',
@@ -269,10 +269,10 @@ function cleanAndFormatContent(element) {
         elements.forEach(el => el.remove());
     });
 
-    // Clean and format the text
+    
     return clone.innerText
-        .replace(/(\n\s*){3,}/g, '\n\n')  // Remove excessive newlines
-        .replace(/\s+/g, ' ')             // Remove excessive whitespace
+        .replace(/(\n\s*){3,}/g, '\n\n')  
+        .replace(/\s+/g, ' ')             
         .trim();
 }
 
@@ -282,7 +282,7 @@ async function detectContentType() {
       let contentToAnalyze = '';
       let title = '';
 
-      // Extract content based on source type
+      
       if (url.includes('youtube.com')) {
           title = document.querySelector('h1.title')?.textContent || '';
           const description = document.querySelector('#description-text')?.textContent || '';
@@ -296,7 +296,7 @@ async function detectContentType() {
           contentToAnalyze = mainContent.innerText.slice(0, 2000);
       }
 
-      // Send content for categorization
+      
       const message = {
           action: "categorize",
           data: {
@@ -314,7 +314,7 @@ async function detectContentType() {
   }
 }
 
-// Main content extraction handler
+
 async function extractContent() {
   try {
       let result;
@@ -347,7 +347,7 @@ async function extractContent() {
   }
 }
 
-// Message handling
+
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === "getContent") {
     extractContent()
@@ -362,11 +362,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         console.error('Error in message listener:', error);
         sendResponse({error: `Error extracting content: ${error.message}`});
       });
-    return true; // Indicates we will respond asynchronously
+    return true; 
   }
 });
 
-// Initialize PDF.js if needed
+
 if (document.contentType === 'application/pdf') {
     loadPdfJs().catch(console.error);
 }
