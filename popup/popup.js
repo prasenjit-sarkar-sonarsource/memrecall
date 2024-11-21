@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function displaySummary(result) {
     let content = '';
     
-    // Add content type tags if available
+    
     if (currentContentType?.type && currentContentType?.subtype) {
       content += `
         <div class="topic-tags mb-4">
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>`;
     }
 
-    // Add media content if available
+    
     if (currentVideoId) {
       content += `<img src="https://img.youtube.com/vi/${currentVideoId}/0.jpg" 
                   alt="Video Thumbnail" 
@@ -46,22 +46,22 @@ document.addEventListener('DOMContentLoaded', function() {
                   class="w-full mb-4 rounded-lg">`;
     }
 
-    // Add summary content
+    
     const summaryText = typeof result === 'string' ? result : result.summary;
     if (summaryText) {
       content += `<div class="text-gray-200 mb-6">${marked.parse(summaryText)}</div>`;
     }
 
-    // Add keywords section if keywords exist
+    
     if (result.keywords && Array.isArray(result.keywords) && result.keywords.length > 0) {
-      // Create container for keywords
+      
       const keywordsContainerId = 'keywordsContainer';
       content += `<div id="${keywordsContainerId}"></div>`;
       
-      // Update the main content first
+      
       summaryElement.innerHTML = content;
       
-      // Then render the React component into the container
+      
       const keywordsContainer = document.getElementById(keywordsContainerId);
       if (keywordsContainer) {
         ReactDOM.render(
@@ -70,11 +70,11 @@ document.addEventListener('DOMContentLoaded', function() {
         );
       }
     } else {
-      // If no keywords, just update the content
+      
       summaryElement.innerHTML = content;
     }
 
-    // Show copy and export buttons
+    
     copyBtn.style.display = 'block';
     exportBtn.style.display = 'block';
   }
@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function copyToClipboard() {
     if (currentSummary) {
       navigator.clipboard.writeText(getFullMarkdown()).then(() => {
-        // Show success feedback
+        
         const originalText = copyBtn.innerHTML;
         copyBtn.innerHTML = '<span class="material-icons">check</span>';
         setTimeout(() => {
@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded', function() {
     exportBtn.style.display = 'none';
   }
 
-  // Event Listeners
+  
   settingsBtn?.addEventListener('click', openSettings);
   closeBtn?.addEventListener('click', closePopup);
   summarizeBtn?.addEventListener('click', summarizeContent);
@@ -206,7 +206,7 @@ document.addEventListener('DOMContentLoaded', function() {
   conciseTab?.addEventListener('click', () => switchTab('concise'));
   detailedTab?.addEventListener('click', () => switchTab('detailed'));
 
-  // Initial settings load
+  
   chrome.storage.sync.get({
     summaryLength: 'detailed',
     autosave: false,
@@ -222,6 +222,6 @@ document.addEventListener('DOMContentLoaded', function() {
     summaryMode = settings.summaryLength;
   });
 
-  // Check for existing summary on load
+  
   checkForExistingSummary();
 });
