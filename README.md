@@ -411,7 +411,7 @@ Common issues and solutions:
 2. **API Errors**
    - Verify API key in `.env`
    - Check API rate limits
-   - Ensure correct API endpoint
+   - Ensure correct OpenAI API endpoint
 
 3. **Content Not Summarizing**
    - Check console for errors
